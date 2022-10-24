@@ -1,0 +1,37 @@
+[ignore]
+.*/build/.*
+
+[untyped]
+
+[include]
+
+[libs]
+
+[lints]
+
+[options]
+module.name_mapper='^\([^\.].*\)$' -> '<PROJECT_ROOT>/src/\1'
+module.name_mapper='^\([^\.].*\)$' -> '<PROJECT_ROOT>/src/tester/\1'
+module.name_mapper='^\([^\.].*\)$' -> '<PROJECT_ROOT>/src/tester/atoms/\1'
+module.name_mapper='^\([^\.].*\)$' -> '<PROJECT_ROOT>/src/tester/components/\1'
+module.name_mapper='^\([^\.].*\)$' -> '<PROJECT_ROOT>/src/analytics/\1'
+module.name_mapper='^\([^\.].*\)$' -> '<PROJECT_ROOT>/src/analytics/atoms/\1'
+module.name_mapper='^\([^\.].*\)$' -> '<PROJECT_ROOT>/src/analytics/components/\1'
+module.name_mapper='^\([^\.].*\)$' -> 'fbjs/lib/\1'
+
+enums=true
+experimental.const_params=true
+exact_by_default=true
+
+[strict]
+deprecated-type
+sketchy-null
+unclear-type
+unsafe-getters-setters
+untyped-type-import
+
+; There is no flow type definition for the mui lib, so we have to disable this rule.
+; untyped-import
+
+[version]
+^0.190.0

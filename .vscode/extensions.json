@@ -1,0 +1,10 @@
+{
+  "recommendations": [
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode",
+    "flowtype.flow-for-vscode",
+    "ms-python.vscode-pylance",
+    "ms-python.pylint",
+    "ms-python.python"
+  ]
+}

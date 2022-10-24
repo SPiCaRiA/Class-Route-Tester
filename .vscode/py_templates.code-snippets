@@ -1,0 +1,22 @@
+{
+  "Regular Python Module": {
+    "scope": "python",
+    "prefix": "",
+    "body": [
+      "'''",
+      "${1:Describe the module.}",
+      "",
+      ":Authors: $2",
+      "'''",
+      "",
+      "",
+      "def func_name(${3:arg}: ${4:ArgType}) -> ${5:ReturnType}:",
+      "    '''",
+      "    ${6:Describe the function.}",
+      "    '''",
+      "    ${0:pass}",
+      ""
+    ],
+    "description": "Python module initialized with a function definition."
+  }
+}

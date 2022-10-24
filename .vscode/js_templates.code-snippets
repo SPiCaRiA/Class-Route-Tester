@@ -1,0 +1,92 @@
+{
+  "React Component": {
+    "scope": "javascript,typescript",
+    "prefix": "",
+    "body": [
+      "/**",
+      " * @flow strict-local",
+      " * @author $1",
+      " */",
+      "",
+      "import * as React from 'react';",
+      "",
+      "type Props = \\$ReadOnly<{",
+      "  $2",
+      "}>;",
+      "",
+      "export default function ${TM_FILENAME_BASE/(.+)\\.(.+)/$1/}(${3:props}: Props): React.MixedElement {",
+      "  return $0;",
+      "}",
+      ""
+    ],
+    "description": "JavaScript module initialized with a React component."
+  },
+
+  "Regular JavaScript Module": {
+    "isFileTemplate": true,
+    "scope": "javascript,typescript",
+    "prefix": "",
+    "body": [
+      "/**",
+      " * ${1:Describe the module.}",
+      "",
+      " * @flow strict-local",
+      " * @author $2",
+      " */",
+      "",
+      "export default function ${3:functionName}(${4:arg}: ${5:ArgType}): ${6:ReturnType} {",
+      "  return $0;",
+      "}",
+      ""
+    ],
+    "description": "JavaScript module initialized with an exported function."
+  },
+
+  "Recoil Selector": {
+    "scope": "javascript,typescript",
+    "prefix": "",
+    "body": [
+      "/**",
+      " * ${1:Describe the module.}",
+      "",
+      " * @flow strict-local",
+      " * @author $2",
+      " */",
+      "",
+      "import type {RecoilValueReadOnly} from 'recoil';",
+      "",
+      "import {selector} from 'recoil';",
+      "",
+      "export const ${3:selectorName}: RecoilValueReadOnly<${4:ValueType}> = selector({",
+      "  key: '${TM_DIRECTORY/.*(tester|analytics).*/$1/}/$3Selector',",
+      "  get: ({get}) => {},",
+      "});",
+      ""
+    ],
+    "description": "JavaScript module initialized with a Recoil selector."
+  },
+
+  "Recoil Atom": {
+    "scope": "javascript,typescript",
+    "prefix": "",
+    "body": [
+      "/**",
+      " * ${1:Describe the module.}",
+      "",
+      " * @flow strict-local",
+      " * @author $2",
+      " */",
+      "",
+      "import type {RecoilState} from 'recoil';",
+      "",
+      "import {atom} from 'recoil';",
+      "",
+      "export const ${3:atomName}: RecoilState<${4:ValueType}> = atom({",
+      "  key: '${TM_DIRECTORY/.*(tester|analytics).*/$1/}/$3Atom',",
+      "  default: $0,",
+      "});",
+      ""
+    ],
+    "description": "JavaScript module initialized with a Recoil atom."
+  }
+}
