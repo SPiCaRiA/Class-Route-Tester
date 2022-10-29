@@ -23,7 +23,7 @@
     "build": "react-app-rewired build",
     "test": "react-app-rewired test",
     "eject": "react-scripts eject",
-    "flow": "flow src",
+    "flow-src": "flow src",
     "prepare": "husky install",
     "pre-commit": "source .venv/bin/activate && lint-staged",
     "api": "source .venv/bin/activate && python -m class_route_api"
@@ -73,10 +73,15 @@
   },
   "lint-staged": {
     "*.{js,md,json}": "prettier --write",
-    "*.js": "eslint --fix",
+    "*.js": [
+      "eslint --fix",
+      "flow"
+    ],
     "*.py": [
       "yapf -i",
-      "isort"
+      "isort",
+      "pylint",
+      "pyright"
     ]
   }
 }
