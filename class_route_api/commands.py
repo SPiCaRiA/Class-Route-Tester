@@ -25,7 +25,7 @@ def create_db():
 
 def create_db_if_not_exist():
     '''
-    Check if the database file exists. If not, prompt a message to see if it 
+    Check if the database file exists. If not, prompt a message to see if it
     needs to be created.
     '''
     if not db_exist():
