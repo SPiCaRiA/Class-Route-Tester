@@ -1,0 +1,6 @@
+{
+  "include": ["class_route_api"],
+  "pythonVersion": "3.10",
+  "reportMissingParameterType": "error",
+  "reportUnnecessaryTypeIgnoreComment": "error"
+}
