@@ -1,5 +1,6 @@
 [ignore]
 .*/build/.*
+.*/**/malformed_package_json/package.json
 
 [untyped]
 
