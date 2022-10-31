@@ -1,0 +1,23 @@
+name: JavaScript Code Check
+
+on:
+  push:
+    paths: ["src/*.js"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Install modules
+      run: |
+        yarn install
+
+    - name: Analysing the code with ESLint
+      run: |
+        yarn eslint src --ext .js,.jsx,.ts,.tsx
+
+    - name: Flow type check
+      run: |
+        yarn flow src
