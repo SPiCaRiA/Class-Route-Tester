@@ -25,8 +25,8 @@
     "eject": "react-scripts eject",
     "flow-src": "flow src",
     "prepare": "husky install",
-    "pre-commit": "source .venv/bin/activate && lint-staged",
-    "api": "source .venv/bin/activate && python -m class_route_api"
+    "pre-commit": ". .venv/bin/activate && lint-staged",
+    "api": ". .venv/bin/activate && python -m class_route_api"
   },
   "eslintConfig": {
     "extends": [
