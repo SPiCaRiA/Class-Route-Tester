@@ -3,13 +3,22 @@
  * @author Daniel Tat
  */
 
+import 'AnalyticsPage.react.css';
+
 import * as React from 'react';
 
 type Props = $ReadOnly<{}>;
 
-const PHASES = ['Grammar', 'Translation'];
-const RATINGS = ['5', '4', '3', '2', '1'];
-
 export default function AnalyticsPage(_props: Props): React.MixedElement {
-  return <p>(Placeholder) This is the Analytics Page.</p>;
+  return (
+    <div className="page-heading">
+      <div className="page-formatter">
+        <div className="page-formatter-1">
+          <div className="header-container">
+            <span className="class-route-tester-header">ClassRoute Tester</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 }
