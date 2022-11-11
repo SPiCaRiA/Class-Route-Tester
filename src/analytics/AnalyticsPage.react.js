@@ -3,8 +3,6 @@
  * @author Daniel Tat
  */
 
-import 'AnalyticsPage.react.css';
-
 import {Grid, IconButton, InputLabel, Typography} from '@mui/material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
@@ -14,10 +12,51 @@ import CssBaseline from '@mui/material/CssBaseline';
 import Divider from '@mui/material/Divider';
 import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
+import Paper from '@mui/material/Paper';
 import Select from '@mui/material/Select';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
 import * as React from 'react';
 
 type Props = $ReadOnly<{}>;
+
+function createData(
+  time: string,
+  topic: string,
+  phase: string,
+  rating: string,
+  details: string,
+) {
+  return {time, topic, phase, rating, details};
+}
+
+const rows = [
+  createData(
+    'Sun Oct 09 2022 23:09:47',
+    'Mathematics',
+    'Translation',
+    '3',
+    'Lorem',
+  ),
+  createData(
+    'Sun Oct 09 2022 23:09:47',
+    'Computer Science',
+    'Grammar Check',
+    '5',
+    'Lorem ipsum',
+  ),
+  createData(
+    'Sun Oct 09 2022 23:09:47',
+    'Physics',
+    'Translation',
+    '4',
+    'Lorem ipsum',
+  ),
+];
 
 export default function AnalyticsPage(_props: Props): React.MixedElement {
   return (
@@ -52,9 +91,8 @@ export default function AnalyticsPage(_props: Props): React.MixedElement {
               height: '900px',
               mx: '24px',
               px: '24px',
-              pt: '24px',
             }}>
-            <Box>
+            <Box sx={{my: '24px'}}>
               <Grid container spacing={1}>
                 <Grid item xs={4.5}>
                   <FormControl fullWidth>
@@ -106,7 +144,36 @@ export default function AnalyticsPage(_props: Props): React.MixedElement {
               </Grid>
             </Box>
             <Divider>RESULTS</Divider>
-            <Box>(Placeholder) This is where the table will go.</Box>
+            <Box sx={{my: '24px'}}>
+              <TableContainer component={Paper}>
+                <Table sx={{minWidth: 650}} aria-label="simple table">
+                  <TableHead>
+                    <TableRow>
+                      <TableCell>Time</TableCell>
+                      <TableCell>Topic</TableCell>
+                      <TableCell>Phase</TableCell>
+                      <TableCell>Rating</TableCell>
+                      <TableCell>Details</TableCell>
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {rows.map(row => (
+                      <TableRow
+                        key={row.time}
+                        sx={{'&:last-child td, &:last-child th': {border: 0}}}>
+                        <TableCell component="th" scope="row">
+                          {row.time}
+                        </TableCell>
+                        <TableCell>{row.topic}</TableCell>
+                        <TableCell>{row.phase}</TableCell>
+                        <TableCell>{row.rating}</TableCell>
+                        <TableCell>{row.details}</TableCell>
+                      </TableRow>
+                    ))}
+                  </TableBody>
+                </Table>
+              </TableContainer>
+            </Box>
           </Card>
         </Box>
       </Container>
