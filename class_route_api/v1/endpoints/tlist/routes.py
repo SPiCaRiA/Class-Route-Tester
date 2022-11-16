@@ -8,4 +8,4 @@ from fastapi import APIRouter
 
 router = APIRouter(prefix='/tlist')
 
-# TODO: RESTful API routes for the problem reports.
+# TODO: RESTful API routes for retrieving topic list.
