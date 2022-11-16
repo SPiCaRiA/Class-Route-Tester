@@ -17,8 +17,8 @@ export default function AnalyticsFilter() {
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
-              <MenuItem value={'Translation'}>Translation</MenuItem>
-              <MenuItem value={'Grammer'}>Grammar</MenuItem>
+              <MenuItem value="Translation">Translation</MenuItem>
+              <MenuItem value="Grammar">Grammar</MenuItem>
             </Select>
           </FormControl>
         </Grid>
@@ -29,9 +29,9 @@ export default function AnalyticsFilter() {
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
-              <MenuItem value={'Physics'}>Physics</MenuItem>
-              <MenuItem value={'Mathematics'}>Mathematics</MenuItem>
-              <MenuItem value={'Computer Science'}>Computer Science</MenuItem>
+              <MenuItem value="Physics">Physics</MenuItem>
+              <MenuItem value="Mathematics">Mathematics</MenuItem>
+              <MenuItem value="Computer Science">Computer Science</MenuItem>
             </Select>
           </FormControl>
         </Grid>
@@ -42,11 +42,11 @@ export default function AnalyticsFilter() {
               <MenuItem value="">
                 <em>None</em>
               </MenuItem>
-              <MenuItem value={1}>1</MenuItem>
-              <MenuItem value={2}>2</MenuItem>
-              <MenuItem value={3}>3</MenuItem>
-              <MenuItem value={4}>4</MenuItem>
-              <MenuItem value={5}>5</MenuItem>
+              <MenuItem value="1">1</MenuItem>
+              <MenuItem value="2">2</MenuItem>
+              <MenuItem value="3">3</MenuItem>
+              <MenuItem value="4">4</MenuItem>
+              <MenuItem value="5">5</MenuItem>
             </Select>
           </FormControl>
         </Grid>
