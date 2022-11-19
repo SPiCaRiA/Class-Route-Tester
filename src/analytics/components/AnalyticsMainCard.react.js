@@ -25,10 +25,10 @@ export default function MainCard() {
           mx: '24px',
           px: '24px',
         }}>
-        <AnalyticsFilter></AnalyticsFilter>
+        <AnalyticsFilter />
         <Divider>RESULTS</Divider>
         <Box sx={{my: '24px'}}>
-          <AnalyticsTable></AnalyticsTable>
+          <AnalyticsTable />
         </Box>
       </Card>
     </Box>

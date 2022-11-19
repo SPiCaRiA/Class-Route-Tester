@@ -10,11 +10,14 @@ import Container from '@mui/material/Container';
 import ScopedCssBaseline from '@mui/material/ScopedCssBaseline';
 import * as React from 'react';
 
+import AnalyticsErrorAlert from './components/AnalyticsErrorAlert.react';
+
 type Props = $ReadOnly<{}>;
 
 export default function AnalyticsPage(_props: Props): React.MixedElement {
   return (
     <ScopedCssBaseline>
+      <AnalyticsErrorAlert />
       <Container>
         <AnalyticsHeader />
         <MainCard />
