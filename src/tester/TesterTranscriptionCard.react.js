@@ -17,7 +17,7 @@ export default function TesterTranscriptionCard() {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Rerun</Button>
+        <Button size="small">Rerun1</Button>
         <Button size="small">Report</Button>
       </CardActions>
     </Card>
