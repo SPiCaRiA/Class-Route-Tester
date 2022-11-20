@@ -8,6 +8,9 @@
  import TesterTranscriptionCard from './TesterTranscriptionCard.react';
  import TesterTranslationCard from './TesterTranslationCard.react';
  
+ import Box from '@mui/material/Box';
+ import Grid from '@mui/material/Grid';
+ import Stack from '@mui/material/Stack';
  import * as React from 'react';
  
  type Props = $ReadOnly<{}>;
@@ -18,15 +21,18 @@
        <div>
          <TesterHeader></TesterHeader>
        </div>
-       <div>
-         <TesterStepper></TesterStepper>
-       </div>
-       <div>
-         <TesterTranscriptionCard></TesterTranscriptionCard>
-       </div>
-       <div>
-         <TesterTranslationCard></TesterTranslationCard>
-       </div>
+       <Grid
+         sx={{display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+         <div>
+           <TesterStepper></TesterStepper>
+         </div>
+         <Grid sx={{m: 1, position: 'relative'}}>
+           <div>
+             <TesterTranscriptionCard></TesterTranscriptionCard>
+             <TesterTranslationCard></TesterTranslationCard>
+           </div>
+         </Grid>
+       </Grid>
      </p>
    );
  }
