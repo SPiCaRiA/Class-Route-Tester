@@ -1,3 +1,4 @@
+import TesterReportDialog from './TesterReportDialog.react';
 import TesterTranscriptionTextField from './TesterTranscriptionTextField.react';
 
 import Button from '@mui/material/Button';
@@ -17,8 +18,8 @@ export default function TesterTranscriptionCard() {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button size="small">Rerun1</Button>
-        <Button size="small">Report</Button>
+        <Button size="small">Rerun</Button>
+        <TesterReportDialog size="small">REPORT</TesterReportDialog>
       </CardActions>
     </Card>
   );
