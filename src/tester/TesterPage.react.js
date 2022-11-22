@@ -18,6 +18,7 @@
    return (
      <p>
        <div>
+         <TesterRunErrorAlert />
          <TesterHeader></TesterHeader>
        </div>
        <Grid
@@ -25,7 +26,6 @@
          <div>
            <TesterStepper></TesterStepper>
          </div>
-         <TesterRunErrorAlert />
          <Grid sx={{m: 1, position: 'relative'}}>
            <div>
              <TesterTranscriptionCard></TesterTranscriptionCard>
