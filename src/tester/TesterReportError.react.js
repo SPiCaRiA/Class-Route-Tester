@@ -30,7 +30,7 @@ export default function TesterReportError() {
               </IconButton>
             }>
             <AlertTitle>Error</AlertTitle>
-            Failed to fetch results.
+            Failed to send a report.
           </Alert>
         </Stack>
       </Collapse>
