@@ -36,6 +36,7 @@ export default function TesterReportDialoge() {
   return (
     <div>
       <Button onClick={handleClickOpen('paper')}>REPORT</Button>
+      <TesterReportErrorAlert />
       <Dialog
         open={open}
         onClose={handleClose}
