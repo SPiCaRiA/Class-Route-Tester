@@ -8,9 +8,7 @@
  import TesterTranscriptionCard from './TesterTranscriptionCard.react';
  import TesterTranslationCard from './TesterTranslationCard.react';
  
- import Box from '@mui/material/Box';
  import Grid from '@mui/material/Grid';
- import Stack from '@mui/material/Stack';
  import * as React from 'react';
  
  type Props = $ReadOnly<{}>;
