@@ -7,6 +7,7 @@
  import TesterStepper from './TesterStepper.react';
  import TesterTranscriptionCard from './TesterTranscriptionCard.react';
  import TesterTranslationCard from './TesterTranslationCard.react';
+ import TesterRunErrorAlert from './TesterRunErrorAlert.react';
  
  import Grid from '@mui/material/Grid';
  import * as React from 'react';
