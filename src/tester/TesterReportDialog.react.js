@@ -37,13 +37,13 @@ export default function TesterReportDialoge() {
   return (
     <div>
       <Button onClick={handleClickOpen('paper')}>REPORT</Button>
-      <TesterReportErrorAlert />
       <Dialog
         open={open}
         onClose={handleClose}
         scroll={scroll}
         aria-labelledby="scroll-dialog-title"
         aria-describedby="scroll-dialog-description">
+        <TesterReportErrorAlert />
         <DialogTitle id="scroll-dialog-title">Report a Problem</DialogTitle>
         <DialogContent>
           <Grid sx={{display: 'flex', alignItems: 'center', justifyContent: 'left'}}>
