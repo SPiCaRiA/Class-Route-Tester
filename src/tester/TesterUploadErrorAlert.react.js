@@ -5,7 +5,7 @@ import Stack from '@mui/material/Stack';
 import {Box} from '@mui/system';
 import * as React from 'react';
 
-export default function TesterUploadError() {
+export default function TesterUploadErrorAlert() {
   const [open, setOpen] = React.useState(false);
 
   function openError() {
