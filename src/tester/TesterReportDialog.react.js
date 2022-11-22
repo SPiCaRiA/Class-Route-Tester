@@ -1,5 +1,5 @@
 import TesterRatingScore from './TesterRatingScore.react';
-
+import Grid from '@mui/material/Grid';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import Dialog from '@mui/material/Dialog';
@@ -43,22 +43,13 @@ export default function TesterReportDialoge() {
         aria-labelledby="scroll-dialog-title"
         aria-describedby="scroll-dialog-description">
         <DialogTitle id="scroll-dialog-title">Report a Problem</DialogTitle>
-        <DialogContent dividers={scroll === 'paper'}>
-          {/* <DialogContentText
-            id="scroll-dialog-description"
-            ref={descriptionElementRef}
-            tabIndex={-1}
-          >
-            {[...new Array(50)]
-              .map(
-                () => `Write down any problems you encountered`,
-              )
-              .join('\n')}
-          </DialogContentText> */}
+        <DialogContent>
+          <Grid sx={{display: 'flex', alignItems: 'center', justifyContent: 'left'}}>
           <div>Give a rating on the result:</div>
           <div>
             <TesterRatingScore></TesterRatingScore>
           </div>
+          </Grid>
           <div>
             <Box
               component="form"
