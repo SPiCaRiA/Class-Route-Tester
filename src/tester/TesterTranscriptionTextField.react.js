@@ -20,7 +20,7 @@ export default function TesterTranscriptionTextField() {
       <div>
         <TextField
           id="outlined-multiline-static"
-          label="Intput/Output"
+          label="Input/Output"
           multiline
           rows={10}
           defaultValue="Default Value"
