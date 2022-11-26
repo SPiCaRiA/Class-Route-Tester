@@ -29,25 +29,20 @@ Original file is located at
 """
 
 #!pip install transformers sentencepiece datasets
-
+"""
 import subprocess
 import sys
-
 
 def install(package):
     subprocess.check_call([sys.executable, "-m", "pip", "install", package])
 
 
 install('transformers sentencepiece datasets')
-
-import matplotlib.pyplot as plt
+"""
 import numpy as np
 import seaborn as sns
 import torch
 from datasets import load_dataset
-from google.colab import drive
-from IPython.display import display
-from IPython.html import widgets
 from torch import optim
 from torch.nn import functional as F
 from tqdm import tqdm_notebook
@@ -60,11 +55,8 @@ from transformers import (
 
 sns.set()
 
-#drive.mount('/content/gdrive')
-
 # Use 'google/mt5-small' for non-pro cloab users
 model_repo = 'google/mt5-small'
-#model_path = '/content/gdrive/My Drive/mt5_translation.pt'
 max_seq_len = 20
 """# Load Tokenizer & Model"""
 
@@ -309,36 +301,6 @@ for epoch_idx in range(n_epochs):
             #torch.save(model.state_dict(), model_path)
 
 #torch.save(model.state_dict(), model_path)
-
-# Graph the loss
-
-#window_size = 50
-#smoothed_losses = []
-#for i in range(len(losses)-window_size):
-#smoothed_losses.append(np.mean(losses[i:i+window_size]))
-
-#plt.plot(smoothed_losses[100:])
-"""
-
-test_sentence = test_dataset[0]['translation']['en']
-print('Raw input text:', test_sentence)
-
-input_ids = encode_input_str(
-    text = test_sentence,
-    target_lang = 'ja',
-    tokenizer = tokenizer,
-    seq_len = model.config.max_length,
-    lang_token_map = LANG_TOKEN_MAPPING)
-input_ids = input_ids.unsqueeze(0).cuda()
-
-print('Truncated input text:', tokenizer.convert_tokens_to_string(
-    tokenizer.convert_ids_to_tokens(input_ids[0])))
-
-output_tokens = model.generate(input_ids, num_beams=10, num_return_sequences=3)
-# print(output_tokens)
-for token_set in output_tokens:
-  print(tokenizer.decode(token_set, skip_special_tokens=True))
-"""
 
 
 #@title Slick Blue Translate
