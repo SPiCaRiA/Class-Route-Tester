@@ -15,6 +15,8 @@ async def grammar_check(transcribed_text: str = Query(min_length=1)) -> dict:
     """
     grammar check API for future use
     """
+    # since the research team does not have a grammar check tool/external service
+    # available at this point, here we simplt return whatever input text we get
     return {"result": transcribed_text}
 
 
