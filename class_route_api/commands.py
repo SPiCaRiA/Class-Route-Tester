@@ -4,6 +4,7 @@ Command line utility functions.
 :Authors: Weixuan Lin
 '''
 
+import re
 import time
 
 import click
@@ -75,6 +76,16 @@ def init_db() -> None:
     create_db()
 
 
+def titlecase(input_str: str) -> str:
+    """
+    a helper function for converting a str to titlecase
+    """
+    return re.sub(
+        r"[A-Za-z]+('[A-Za-z]+)?", lambda word: word.group(0).capitalize(),
+        input_str
+    )
+
+
 @cli.command()
 def add_data() -> None:
     '''
@@ -86,6 +97,8 @@ def add_data() -> None:
     phase = click.prompt('Phase (1-4)', type=int)
     rating = click.prompt('Rating (1-5)', type=int)
     detail = click.prompt('Detail', type=str)
+    # convert terminal input into titlecase
+    topic = titlecase(topic)
 
     connection = connect_db()
     with connection:
