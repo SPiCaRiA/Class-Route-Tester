@@ -8,7 +8,7 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 from .internal.config import settings
-from .v1.endpoints import alg, reports
+from .v1.endpoints import alg, reports, tlist
 
 
 def create_app() -> FastAPI:
@@ -27,6 +27,7 @@ def create_app() -> FastAPI:
 
     _app.include_router(alg, prefix='/api')
     _app.include_router(reports, prefix='/api')
+    _app.include_router(tlist, prefix='/api')
 
     return _app
 

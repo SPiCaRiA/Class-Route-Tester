@@ -17,7 +17,6 @@ type Props = $ReadOnly<{}>;
 export default function AnalyticsPage(_props: Props): React.MixedElement {
   return (
     <ScopedCssBaseline>
-      <AnalyticsErrorAlert />
       <Container>
         <AnalyticsHeader />
         <MainCard />
