@@ -13,8 +13,9 @@ AnalyticsErrorAlert.propTypes = {
 export default function AnalyticsErrorAlert({closeButtonOnClick}) {
   return (
     <Box>
-      <Stack sx={{width: '50%'}} spacing={2}>
+      <Stack sx={{pt: '8px'}} alignItems="center" spacing={2}>
         <Alert
+          sx={{py: '20px', px: '32px'}}
           severity="error"
           action={
             <IconButton
