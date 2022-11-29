@@ -1,40 +1,34 @@
-import {Button, Collapse, IconButton} from '@mui/material';
+import {IconButton} from '@mui/material';
 import Alert from '@mui/material/Alert';
 import AlertTitle from '@mui/material/AlertTitle';
+import Box from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-import {Box} from '@mui/system';
+import PropTypes from 'prop-types';
 import * as React from 'react';
 
-export default function AnalyticsErrorAlert() {
-  const [open, setOpen] = React.useState(false);
+AnalyticsErrorAlert.propTypes = {
+  closeButtonOnClick: PropTypes.func,
+};
 
-  function openError() {
-    setOpen(true);
-  }
-
+export default function AnalyticsErrorAlert({closeButtonOnClick}) {
   return (
     <Box>
-      <Collapse in={open}>
-        <Stack sx={{width: '50%'}} spacing={2}>
-          <Alert
-            severity="error"
-            action={
-              <IconButton
-                aria-label="close"
-                color="inherit"
-                size="small"
-                onClick={() => {
-                  setOpen(false);
-                }}>
-                X
-              </IconButton>
-            }>
-            <AlertTitle>Error</AlertTitle>
-            Failed to fetch results.
-          </Alert>
-        </Stack>
-      </Collapse>
-      <Button onClick={openError}>Trigger Error Alert</Button>
+      <Stack sx={{width: '50%'}} spacing={2}>
+        <Alert
+          severity="error"
+          action={
+            <IconButton
+              aria-label="close"
+              color="inherit"
+              size="small"
+              onClick={closeButtonOnClick}>
+              X
+            </IconButton>
+          }>
+          <AlertTitle>Error</AlertTitle>
+          Failed to fetch results.
+        </Alert>
+      </Stack>
     </Box>
   );
 }

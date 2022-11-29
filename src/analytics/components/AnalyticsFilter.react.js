@@ -4,9 +4,14 @@ import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
+import PropTypes from 'prop-types';
 import * as React from 'react';
 
-export default function AnalyticsFilter() {
+AnalyticsFilter.propTypes = {
+  searchButtonOnClick: PropTypes.func,
+};
+
+export default function AnalyticsFilter({searchButtonOnClick}) {
   return (
     <Box sx={{my: '24px'}}>
       <Grid container spacing={1}>
@@ -52,7 +57,9 @@ export default function AnalyticsFilter() {
         </Grid>
         <Grid item xs={1}>
           <IconButton>
-            <Button variant="contained">(PLACEHOLDER)</Button>
+            <Button variant="contained" onClick={searchButtonOnClick}>
+              (PLACEHOLDER)
+            </Button>
           </IconButton>
         </Grid>
       </Grid>

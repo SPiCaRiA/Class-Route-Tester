@@ -4,9 +4,14 @@ import AnalyticsTable from './AnalyticsTable.react';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import Divider from '@mui/material/Divider';
+import PropTypes from 'prop-types';
 import * as React from 'react';
 
-export default function MainCard() {
+AnalyticsMainCard.propTypes = {
+  searchButtonOnClick: PropTypes.func,
+};
+
+export default function AnalyticsMainCard({searchButtonOnClick}) {
   return (
     <Box
       sx={{
@@ -25,7 +30,7 @@ export default function MainCard() {
           mx: '24px',
           px: '24px',
         }}>
-        <AnalyticsFilter />
+        <AnalyticsFilter searchButtonOnClick={searchButtonOnClick} />
         <Divider>RESULTS</Divider>
         <Box sx={{my: '24px'}}>
           <AnalyticsTable />
