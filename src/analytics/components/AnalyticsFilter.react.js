@@ -1,15 +1,51 @@
+/* eslint-disable no-console */
 import {Grid, IconButton, InputLabel} from '@mui/material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import * as React from 'react';
 
 AnalyticsFilter.propTypes = {
   searchButtonOnClick: PropTypes.func,
 };
+
+// Backend data fetch
+async function getTopicList() {
+  let t = [];
+  await axios.get('http://127.0.0.1:5000/api/tlist').then(response => {
+    t = response.data.topics;
+  });
+  return t;
+}
+
+let resource = [];
+resource = getTopicList().then(result => {
+  resource = result;
+  console.log('Attempting to RESOURCE topics:', resource);
+});
+
+// Topic Select Component
+function TopicList() {
+  const topics = resource;
+  console.log('Attempting to display topics:', topics);
+  const menuItems = topics.map(item => (
+    <MenuItem key={item} value={item}>
+      {item}
+    </MenuItem>
+  ));
+  return (
+    <div>
+      <FormControl fullWidth>
+        <InputLabel id="topic-select">Topics</InputLabel>
+        <Select label="Topics">{menuItems}</Select>
+      </FormControl>
+    </div>
+  );
+}
 
 export default function AnalyticsFilter({searchButtonOnClick}) {
   return (
@@ -19,9 +55,6 @@ export default function AnalyticsFilter({searchButtonOnClick}) {
           <FormControl fullWidth>
             <InputLabel id="phases-select">Phases</InputLabel>
             <Select label="Phases">
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
               <MenuItem value="Translation">Translation</MenuItem>
               <MenuItem value="Grammar">Grammar</MenuItem>
             </Select>
@@ -29,24 +62,23 @@ export default function AnalyticsFilter({searchButtonOnClick}) {
         </Grid>
         <Grid item xs={4.5}>
           <FormControl fullWidth>
-            <InputLabel id="topic-select">Topics</InputLabel>
-            <Select label="Topics">
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
-              <MenuItem value="Physics">Physics</MenuItem>
-              <MenuItem value="Mathematics">Mathematics</MenuItem>
-              <MenuItem value="Computer Science">Computer Science</MenuItem>
-            </Select>
+            <React.Suspense
+              fallback={
+                <Box>
+                  <InputLabel id="topic-select">Topics</InputLabel>
+                  <Select label="Topics">
+                    <MenuItem value="Loading...">Loading...</MenuItem>
+                  </Select>
+                </Box>
+              }>
+              <TopicList />
+            </React.Suspense>
           </FormControl>
         </Grid>
         <Grid item xs={2}>
           <FormControl fullWidth>
             <InputLabel id="rating-select">Ratings</InputLabel>
             <Select label="Ratings">
-              <MenuItem value="">
-                <em>None</em>
-              </MenuItem>
               <MenuItem value="1">1</MenuItem>
               <MenuItem value="2">2</MenuItem>
               <MenuItem value="3">3</MenuItem>
