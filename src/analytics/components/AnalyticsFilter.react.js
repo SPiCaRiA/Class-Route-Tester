@@ -13,26 +13,51 @@ AnalyticsFilter.propTypes = {
   searchButtonOnClick: PropTypes.func,
 };
 
-// Backend data fetch
 async function getTopicList() {
-  let t = [];
-  await axios.get('http://127.0.0.1:5000/api/tlist').then(response => {
-    t = response.data.topics;
-  });
-  return t;
+  return axios
+    .get('http://127.0.0.1:5000/api/tlist')
+    .then(res => res.data)
+    .catch(err => console.log(err));
 }
 
-let resource = [];
-resource = getTopicList().then(result => {
-  resource = result;
-  console.log('Attempting to RESOURCE topics:', resource);
-});
+const dataFetch = () => {
+  const topicPromise = getTopicList;
+  return {
+    topics: wrapPromise(topicPromise),
+  };
+};
 
-// Topic Select Component
-function TopicList() {
-  const topics = resource;
-  console.log('Attempting to display topics:', topics);
-  const menuItems = topics.map(item => (
+const wrapPromise = promise => {
+  let status = 'pending';
+  let result;
+  const suspend = promise().then(
+    res => {
+      status = 'success';
+      result = res;
+    },
+    err => {
+      status = 'error';
+      result = err;
+    },
+  );
+  return {
+    read() {
+      if (status === 'pending') {
+        throw suspend;
+      } else if (status === 'error') {
+        throw result;
+      } else if (status === 'success') {
+        return result;
+      }
+    },
+  };
+};
+
+const resource = dataFetch();
+
+const TopicList = () => {
+  const t = resource.topics.read();
+  const menuItems = t.topics.map(item => (
     <MenuItem key={item} value={item}>
       {item}
     </MenuItem>
@@ -45,7 +70,7 @@ function TopicList() {
       </FormControl>
     </div>
   );
-}
+};
 
 export default function AnalyticsFilter({searchButtonOnClick}) {
   return (
