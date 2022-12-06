@@ -1,75 +1,17 @@
 /* eslint-disable no-console */
+import TopicSelect from './AnalyticsTopicSelect.react';
+
 import {Grid, IconButton, InputLabel} from '@mui/material';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
-import axios from 'axios';
 import PropTypes from 'prop-types';
 import * as React from 'react';
 
 AnalyticsFilter.propTypes = {
   searchButtonOnClick: PropTypes.func,
-};
-
-async function getTopicList() {
-  return axios
-    .get('http://127.0.0.1:5000/api/tlist')
-    .then(res => res.data)
-    .catch(err => console.log(err));
-}
-
-const dataFetch = () => {
-  const topicPromise = getTopicList;
-  return {
-    topics: wrapPromise(topicPromise),
-  };
-};
-
-const wrapPromise = promise => {
-  let status = 'pending';
-  let result;
-  const suspend = promise().then(
-    res => {
-      status = 'success';
-      result = res;
-    },
-    err => {
-      status = 'error';
-      result = err;
-    },
-  );
-  return {
-    read() {
-      if (status === 'pending') {
-        throw suspend;
-      } else if (status === 'error') {
-        throw result;
-      } else if (status === 'success') {
-        return result;
-      }
-    },
-  };
-};
-
-const resource = dataFetch();
-
-const TopicList = () => {
-  const t = resource.topics.read();
-  const menuItems = t.topics.map(item => (
-    <MenuItem key={item} value={item}>
-      {item}
-    </MenuItem>
-  ));
-  return (
-    <div>
-      <FormControl fullWidth>
-        <InputLabel id="topic-select">Topics</InputLabel>
-        <Select label="Topics">{menuItems}</Select>
-      </FormControl>
-    </div>
-  );
 };
 
 export default function AnalyticsFilter({searchButtonOnClick}) {
@@ -80,6 +22,9 @@ export default function AnalyticsFilter({searchButtonOnClick}) {
           <FormControl fullWidth>
             <InputLabel id="phases-select">Phases</InputLabel>
             <Select label="Phases">
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
               <MenuItem value="Translation">Translation</MenuItem>
               <MenuItem value="Grammar">Grammar</MenuItem>
             </Select>
@@ -96,7 +41,7 @@ export default function AnalyticsFilter({searchButtonOnClick}) {
                   </Select>
                 </Box>
               }>
-              <TopicList />
+              <TopicSelect />
             </React.Suspense>
           </FormControl>
         </Grid>
@@ -104,6 +49,9 @@ export default function AnalyticsFilter({searchButtonOnClick}) {
           <FormControl fullWidth>
             <InputLabel id="rating-select">Ratings</InputLabel>
             <Select label="Ratings">
+              <MenuItem value="">
+                <em>None</em>
+              </MenuItem>
               <MenuItem value="1">1</MenuItem>
               <MenuItem value="2">2</MenuItem>
               <MenuItem value="3">3</MenuItem>
