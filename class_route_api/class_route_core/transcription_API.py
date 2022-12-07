@@ -1,1 +1,1 @@
-# placeholder for future transcription API
+# placeholder for future Video-to-Text transcription API
