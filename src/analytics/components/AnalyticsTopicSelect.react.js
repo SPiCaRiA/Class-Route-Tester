@@ -4,9 +4,10 @@ import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
 import axios from 'axios';
+import PropTypes from 'prop-types';
 import * as React from 'react';
 
-async function getTopicList() {
+async function fetchTopicList() {
   return axios
     .get('http://127.0.0.1:5000/api/tlist')
     .then(res => res.data)
@@ -14,7 +15,7 @@ async function getTopicList() {
 }
 
 const dataFetch = () => {
-  const topicPromise = getTopicList;
+  const topicPromise = fetchTopicList;
   return {
     topics: wrapPromise(topicPromise),
   };
@@ -48,7 +49,11 @@ const wrapPromise = promise => {
 
 const resource = dataFetch();
 
-const TopicSelect = () => {
+TopicSelect.propTypes = {
+  topicsOnChange: PropTypes.func,
+};
+
+export default function TopicSelect({topicsOnChange}) {
   const t = resource.topics.read();
   const menuItems = t.topics.map(item => (
     <MenuItem key={item} value={item}>
@@ -59,10 +64,15 @@ const TopicSelect = () => {
     <div>
       <FormControl fullWidth>
         <InputLabel id="topic-select">Topics</InputLabel>
-        <Select label="Topics">{menuItems}</Select>
+        <Select label="Topics" onChange={topicsOnChange}>
+          {menuItems}
+        </Select>
       </FormControl>
     </div>
   );
-};
+}
 
-export default TopicSelect;
+export function getTopicsList() {
+  const t = resource.topics.read();
+  return t.topics;
+}
