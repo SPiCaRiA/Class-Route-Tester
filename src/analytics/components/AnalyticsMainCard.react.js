@@ -15,6 +15,7 @@ AnalyticsMainCard.propTypes = {
 };
 
 export default function AnalyticsMainCard({openError}) {
+  // Will be used in future filter-table interaction implmentation
   const [phases, setPhases] = useState([2, 3]);
   const [topics, setTopics] = useState(getTopicsList());
   const [ratings, setRatings] = useState([1, 2, 3, 4, 5]);
@@ -45,11 +46,7 @@ export default function AnalyticsMainCard({openError}) {
         <Divider>RESULTS</Divider>
         <Box sx={{my: '24px'}}>
           <React.Suspense fallback={<div>Loading...</div>}>
-            <AnalyticsTable
-              phaseParams={phases}
-              topicParams={topics}
-              ratingParams={ratings}
-            />
+            <AnalyticsTable />
           </React.Suspense>
         </Box>
       </Card>

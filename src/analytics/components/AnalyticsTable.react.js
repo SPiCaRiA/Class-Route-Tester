@@ -14,7 +14,7 @@ import * as React from 'react';
 async function fetchReports() {
   const topics = getTopicsList();
   return axios
-    .get('http://127.0.0.1:5000/api/reports/request', {
+    .get('http://127.0.0.1:5000/api/reports/request/', {
       params: {
         topics: topics,
         phases: [2, 3],
@@ -25,7 +25,6 @@ async function fetchReports() {
       },
     })
     .then(res => {
-      console.log(res.data);
       return res.data;
     })
     .catch(err => {
