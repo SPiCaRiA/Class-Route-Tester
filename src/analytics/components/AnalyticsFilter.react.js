@@ -1,9 +1,10 @@
 /* eslint-disable no-console */
 import TopicSelect from './AnalyticsTopicSelect.react';
 
+import SearchIcon from '@mui/icons-material/Search';
 import {Grid, IconButton, InputLabel} from '@mui/material';
 import Box from '@mui/material/Box';
-import Button from '@mui/material/Button';
+import {blue} from '@mui/material/colors';
 import FormControl from '@mui/material/FormControl';
 import MenuItem from '@mui/material/MenuItem';
 import Select from '@mui/material/Select';
@@ -68,7 +69,7 @@ export default function AnalyticsFilter(props) {
         </Grid>
         <Grid item xs={1}>
           <IconButton>
-            <Button variant="contained">(PLACEHOLDER)</Button>
+            <SearchIcon sx={{color: blue[500], fontSize: 40}} />
           </IconButton>
         </Grid>
       </Grid>
