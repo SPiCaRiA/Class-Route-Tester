@@ -30,7 +30,7 @@ export default function AnalyticsPage(_props: Props): React.MixedElement {
       <Container>
         <AnalyticsHeader />
         <AnalyticsMainCard
-          searchButtonOnClick={useCallback(() => {
+          openError={useCallback(() => {
             setOpen(true);
           })}
         />
