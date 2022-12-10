@@ -1,3 +1,6 @@
+/* eslint-disable no-console */
+import {getTopicsList} from './AnalyticsTopicSelect.react';
+
 import Paper from '@mui/material/Paper';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -5,34 +8,81 @@ import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
+import axios from 'axios';
 import * as React from 'react';
 
-// TODO: REMOVE WHEN IMPLEMENTING DATA FETCH FROM BACKEND
-const rows = [
-  {
-    time: 'Sun Oct 09 2022 23:09:47',
-    topic: 'Mathematics',
-    phase: 'Translation',
-    rating: '3',
-    details: 'Lorem',
-  },
-  {
-    time: 'Sun Oct 09 2022 23:09:47',
-    topic: 'Computer Science',
-    phase: 'Grammar Check',
-    rating: '5',
-    details: 'Lorem ipsum',
-  },
-  {
-    time: 'Sun Oct 09 2022 23:09:47',
-    topic: 'Physics',
-    phase: 'Translation',
-    rating: '4',
-    details: 'Lorem ipsum',
-  },
-];
+async function fetchReports() {
+  const topics = getTopicsList();
+  return axios
+    .get('http://127.0.0.1:5000/api/reports/request/', {
+      params: {
+        topics: topics,
+        phases: [2, 3],
+        ratings: [1, 2, 3, 4, 5],
+      },
+      paramsSerializer: {
+        indexes: null,
+      },
+    })
+    .then(res => {
+      return res.data;
+    })
+    .catch(err => {
+      console.log(err);
+    });
+}
+
+const dataFetch = () => {
+  const promise = fetchReports;
+  return {
+    reports_matched: wrapPromise(promise),
+  };
+};
+
+const wrapPromise = promise => {
+  let status = 'pending';
+  let result;
+  const suspend = promise().then(
+    res => {
+      status = 'success';
+      result = res;
+    },
+    err => {
+      status = 'error';
+      result = err;
+    },
+  );
+  return {
+    read() {
+      if (status === 'pending') {
+        throw suspend;
+      } else if (status === 'success') {
+        return result;
+      } else {
+        throw result;
+      }
+    },
+  };
+};
+
+const resource = dataFetch();
 
 export default function AnalyticsTable() {
+  const reports = resource.reports_matched.read();
+  const reportsData = [];
+  reports['reports matched'].forEach(element => {
+    let convertedPhase = 1;
+    if (element.phase == 2) convertedPhase = 'Translation';
+    else if (element.phase == 3) convertedPhase = 'Grammar';
+    reportsData.push({
+      time: element.time,
+      topic: element.topic,
+      phase: convertedPhase,
+      rating: element.rating,
+      details: element.details,
+    });
+  });
+
   return (
     <TableContainer component={Paper}>
       <Table sx={{minWidth: 650}} aria-label="simple table">
@@ -46,7 +96,7 @@ export default function AnalyticsTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map(row => (
+          {reportsData.map(row => (
             <TableRow
               key={row.time}
               sx={{'&:last-child td, &:last-child th': {border: 0}}}>
