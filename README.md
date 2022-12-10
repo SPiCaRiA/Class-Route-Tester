@@ -36,4 +36,6 @@ We have a series of commands for you to test the database locally.
 ![Capture](https://user-images.githubusercontent.com/45088995/206306693-40c65c56-5f37-4485-8ddd-e39cc33f832d.PNG)  
 
 - **tlist:** Returns all distinct topics stored in database.
- ![Capture](https://user-images.githubusercontent.com/45088995/206307412-bc6f126f-4f73-4abf-9910-f1ee9e4b6d9d.PNG)
+ ![Capture](https://user-images.githubusercontent.com/45088995/206307412-bc6f126f-4f73-4abf-9910-f1ee9e4b6d9d.PNG)  
+ 
+   Source: FastAPI automatic interactive documentation
