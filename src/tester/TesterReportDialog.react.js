@@ -10,11 +10,53 @@ import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import Grid from '@mui/material/Grid';
 import TextField from '@mui/material/TextField';
+import {useState} from 'react';
 import * as React from 'react';
 
 export default function TesterReportDialoge() {
   const [open, setOpen] = React.useState(false);
   const [scroll, setScroll] = React.useState('paper');
+
+  const [posts, setPosts] = useState([]);
+  const [topic, setTopic] = useState('');
+  const [phase, setPhase] = useState(0);
+  const [rating, setRating] = useState(0);
+  const [details, setDetails] = useState('');
+
+  const handleChangeDetails = event => {
+    setDetails(event.target.value);
+  };
+
+  // ... Fetch posts here
+
+  // Handle psosts request
+  const handleSubmit = e => {
+    e.preventDefault();
+    fetch('http://127.0.0.1:5000/api/reports/store', {
+      method: 'POST',
+      body: JSON.stringify({
+        topic: topic,
+        phase: phase,
+        rating: rating,
+        details: details,
+      }),
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+      },
+    })
+      .then(res => res.json())
+      .then(post => {
+        setPosts(posts => [post, ...posts]);
+        setTopic('Bio');
+        setPhase(2);
+        setRating(4);
+        setDetails(details);
+      })
+      .catch(err => {
+        console.log(err.message);
+      });
+    setOpen(false);
+  };
 
   const handleClickOpen = scrollType => () => {
     setOpen(true);
@@ -71,12 +113,14 @@ export default function TesterReportDialoge() {
                 placeholder="Write down any problems you encountered"
                 multiline
                 rows={6}
+                value={details}
+                onChange={handleChangeDetails}
               />
             </Box>
           </div>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>SEND</Button>
+          <Button onClick={handleSubmit}>SEND</Button>
           <Button onClick={handleClose}>CANCEL</Button>
         </DialogActions>
       </Dialog>

@@ -38,7 +38,7 @@ export default function TesterUploadDialog() {
 
   return (
     <div>
-      <Button onClick={handleClickOpen('paper')}>UPLOAD VEDIO</Button>
+      <Button onClick={handleClickOpen('paper')}>UPLOAD VIDEO</Button>
       <Dialog
         open={open}
         onClose={handleClose}
